@@ -5,7 +5,7 @@ export interface ClientFunctions {
     setText(id: number, text: string, color: string, loc: [number, number], font: number): void 
     say(text: string): void
     pressKey(key: number, time: number): void 
-    openWindow(owner: Plugin, name: string, size: [number, number], resizable: boolean): void
+    openWindow(owner: Plugin, name: string, indexPath: string, size: [number, number], resizable: boolean): void
     sendToWindow(owner: Plugin, name: string, channel: string, data: any[]): void
 }
 class Client {

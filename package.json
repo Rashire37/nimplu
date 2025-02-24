@@ -1,0 +1,17 @@
+{
+    "name": "nimplu",
+    "type": "module",
+    "version": "1.0.0",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "scripts": {
+        "build": "tsc"
+    },
+    "keywords": [],
+    "author": "Rashire37",
+    "license": "ISC",
+    "files": ["dist", "src"],
+    "devDependencies": {
+        "typescript": "^5.7.3"
+    }
+}

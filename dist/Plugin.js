@@ -1,8 +1,8 @@
 import { ClientEvent } from "./ClientEvent.js";
 class Plugin {
     _events = [];
-    _state = {};
-    _hasLoadedState = false;
+    // private _state: PluginState = {};
+    // private _hasLoadedState: boolean = false;
     author;
     name;
     client;
@@ -24,19 +24,19 @@ class Plugin {
             }
         };
     }
-    setState(key, value) {
-        this._state[key] = value;
-        let state = JSON.stringify(this._state);
-        this.client.setState(this, state);
-    }
-    async getState(key) {
-        if (!this._hasLoadedState) {
-            let response = await this.client.getState(this);
-            this._state = JSON.parse(response);
-            this._hasLoadedState = true;
-        }
-        return this._state[key];
-    }
+    // setState(key: string, value: any){
+    //     this._state[key] = value
+    //     let state = JSON.stringify(this._state)
+    //     this.client!.setState(this, state)
+    // }
+    // async getState(key: string){
+    //     if (!this._hasLoadedState){
+    //         let response = await this.client!.getState(this)
+    //         this._state = JSON.parse(response)
+    //         this._hasLoadedState = true
+    //     }
+    //     return this._state[key]
+    // }
     on(event, callback) {
         this._events.push(new ClientEvent(event, callback));
     }

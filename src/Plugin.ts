@@ -6,8 +6,8 @@ interface PluginState {
 }
 class Plugin {
     private _events: ClientEvent<any>[] = [];
-    private _state: PluginState = {};
-    private _hasLoadedState: boolean = false;
+    // private _state: PluginState = {};
+    // private _hasLoadedState: boolean = false;
     author: string;
     name: string;
     client?: ClientFunctions
@@ -32,19 +32,19 @@ class Plugin {
             }
         }
     }
-    setState(key: string, value: any){
-        this._state[key] = value
-        let state = JSON.stringify(this._state)
-        this.client!.setState(this, state)
-    }
-    async getState(key: string){
-        if (!this._hasLoadedState){
-            let response = await this.client!.getState(this)
-            this._state = JSON.parse(response)
-            this._hasLoadedState = true
-        }
-        return this._state[key]
-    }
+    // setState(key: string, value: any){
+    //     this._state[key] = value
+    //     let state = JSON.stringify(this._state)
+    //     this.client!.setState(this, state)
+    // }
+    // async getState(key: string){
+    //     if (!this._hasLoadedState){
+    //         let response = await this.client!.getState(this)
+    //         this._state = JSON.parse(response)
+    //         this._hasLoadedState = true
+    //     }
+    //     return this._state[key]
+    // }
     
     on<T extends keyof ClientEventsMap>(event: T, callback: (this: Plugin, ev: ClientEventsMap[T]) => void) {
         this._events.push(new ClientEvent(event, callback))

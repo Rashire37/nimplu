@@ -7,8 +7,8 @@ export interface ClientFunctions {
     pressKey(key: number, time: number): void 
     openWindow(owner: Plugin, name: string, indexPath: string, size: [number, number], resizable: boolean): void
     sendToWindow(owner: Plugin, name: string, channel: string, data: any[]): void
-    setState(owner: Plugin, content: string): void
-    getState(owner: Plugin): string
+    // setState(owner: Plugin, content: string): void
+    // getState(owner: Plugin): string
 }
 class Client {
     private _plugins: {

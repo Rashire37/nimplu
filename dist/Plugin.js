@@ -24,4 +24,3 @@ class Plugin {
     }
 }
 export default Plugin;
-//# sourceMappingURL=Plugin.js.map

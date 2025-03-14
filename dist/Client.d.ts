@@ -15,4 +15,3 @@ declare class Client {
     dispatch<T extends keyof ClientEventsMap>(ev: T, data: ClientEventsMap[T]): void;
 }
 export default Client;
-//# sourceMappingURL=Client.d.ts.map

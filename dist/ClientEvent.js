@@ -10,4 +10,3 @@ class ClientEvent {
     }
 }
 export { ClientEvent };
-//# sourceMappingURL=ClientEvent.js.map

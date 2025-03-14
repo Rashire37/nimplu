@@ -13,4 +13,3 @@ class Feature {
     }
 }
 export default Feature;
-//# sourceMappingURL=Feature.js.map

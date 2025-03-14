@@ -18,4 +18,3 @@ class Client {
     }
 }
 export default Client;
-//# sourceMappingURL=Client.js.map

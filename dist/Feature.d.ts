@@ -10,4 +10,3 @@ declare class Feature {
     events<T extends keyof ClientEventsMap>(ev: T): ClientEvent<T>[];
 }
 export default Feature;
-//# sourceMappingURL=Feature.d.ts.map

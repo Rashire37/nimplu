@@ -15,4 +15,3 @@ declare class Plugin {
     };
 }
 export default Plugin;
-//# sourceMappingURL=Plugin.d.ts.map

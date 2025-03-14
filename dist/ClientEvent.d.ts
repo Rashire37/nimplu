@@ -38,4 +38,3 @@ declare class ClientEvent<T extends keyof ClientEventsMap> {
     call(data: ClientFunctions, ev: ClientEventsMap[T], owner: Plugin): void;
 }
 export { ClientEvent, ClientEventsMap };
-//# sourceMappingURL=ClientEvent.d.ts.map

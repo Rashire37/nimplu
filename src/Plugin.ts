@@ -1,7 +1,8 @@
-import Feature from "./Feature.js";
+import type { ClientFunctions } from "./Client.js";
+import { ClientEvent, ClientEventsMap } from "./ClientEvent.js";
 
 class Plugin {
-    private _features: Feature[] = [];
+    private _events: ClientEvent<any>[] = [];
     author: string;
     name: string;
     constructor(data: {
@@ -11,21 +12,16 @@ class Plugin {
         this.author = data.author;
         this.name = data.name;
     }
-    registerFeature(feature: Feature) {
-        this._features.push(feature)
-    }
     log() {
         console.log(`${this.author}/${this.name}`);
     }
-    features(){
-        return this._features;
+    
+    on<T extends keyof ClientEventsMap>(event: T, callback: (this: ClientFunctions, ev: ClientEventsMap[T], owner: Plugin) => void) {
+        this._events.push(new ClientEvent(event, callback))
     }
-    listFeatures(): { [key: string]: Feature } {
-        let res: { [key: string]: Feature } = {};
-        for (const feature of this._features) {
-            res[feature.id] = feature
-        }
-        return res;
+    
+    events<T extends keyof ClientEventsMap>(ev:T): ClientEvent<T>[]{
+        return this._events.filter(event=>event.event===ev);
     }
 }
 

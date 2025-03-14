@@ -1,17 +1,15 @@
-import Feature from "./Feature.js";
+import type { ClientFunctions } from "./Client.js";
+import { ClientEvent, ClientEventsMap } from "./ClientEvent.js";
 declare class Plugin {
-    private _features;
+    private _events;
     author: string;
     name: string;
     constructor(data: {
         author: string;
         name: string;
     });
-    registerFeature(feature: Feature): void;
     log(): void;
-    features(): Feature[];
-    listFeatures(): {
-        [key: string]: Feature;
-    };
+    on<T extends keyof ClientEventsMap>(event: T, callback: (this: ClientFunctions, ev: ClientEventsMap[T], owner: Plugin) => void): void;
+    events<T extends keyof ClientEventsMap>(ev: T): ClientEvent<T>[];
 }
 export default Plugin;

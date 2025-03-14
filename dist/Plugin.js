@@ -1,26 +1,20 @@
+import { ClientEvent } from "./ClientEvent.js";
 class Plugin {
-    _features = [];
+    _events = [];
     author;
     name;
     constructor(data) {
         this.author = data.author;
         this.name = data.name;
     }
-    registerFeature(feature) {
-        this._features.push(feature);
-    }
     log() {
         console.log(`${this.author}/${this.name}`);
     }
-    features() {
-        return this._features;
+    on(event, callback) {
+        this._events.push(new ClientEvent(event, callback));
     }
-    listFeatures() {
-        let res = {};
-        for (const feature of this._features) {
-            res[feature.id] = feature;
-        }
-        return res;
+    events(ev) {
+        return this._events.filter(event => event.event === ev);
     }
 }
 export default Plugin;

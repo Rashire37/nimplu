@@ -9,10 +9,8 @@ class Client {
     }
     dispatch(ev, data) {
         for (const plugin of this._plugins) {
-            for (const feature of plugin.features()) {
-                for (const event of feature.events(ev)) {
-                    event.call(this._clientFunctions, data, plugin);
-                }
+            for (const event of plugin.events(ev)) {
+                event.call(this._clientFunctions, data, plugin);
             }
         }
     }

@@ -1,16 +1,29 @@
 class Client {
-    _plugins = [];
+    _plugins = {};
     _clientFunctions;
     constructor(clientFunctions) {
         this._clientFunctions = clientFunctions;
     }
     add(plugin) {
-        this._plugins.push(plugin);
+        plugin._setClient(this._clientFunctions);
+        this._plugins[`@${plugin.author}/${plugin.name}`] = plugin;
+        for (const event of plugin.events("pluginLoad")) {
+            event.call(plugin, {});
+        }
+    }
+    dispatchCustomWindowMessage(id, channel, data) {
+        const plugin = this._plugins[id];
+        for (const event of plugin.events("customWindowMessage")) {
+            event.call(plugin, {
+                channel,
+                data
+            });
+        }
     }
     dispatch(ev, data) {
-        for (const plugin of this._plugins) {
+        for (const plugin of Object.values(this._plugins)) {
             for (const event of plugin.events(ev)) {
-                event.call(this._clientFunctions, data, plugin);
+                event.call(plugin, data);
             }
         }
     }

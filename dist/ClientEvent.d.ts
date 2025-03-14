@@ -1,6 +1,6 @@
-import type { ClientFunctions } from "./Client.js";
 import type Plugin from "./Plugin.js";
 interface ClientEventsMap {
+    "pluginLoad": {};
     "speak": {
         text: string;
     };
@@ -30,11 +30,15 @@ interface ClientEventsMap {
         loc: [number, number];
         id: 65001;
     };
+    "customWindowMessage": {
+        channel: string;
+        data: any[];
+    };
 }
 declare class ClientEvent<T extends keyof ClientEventsMap> {
     event: T;
     private _callback;
-    constructor(event: T, _callback: (this: ClientFunctions, ev: ClientEventsMap[T], owner: Plugin) => void);
-    call(data: ClientFunctions, ev: ClientEventsMap[T], owner: Plugin): void;
+    constructor(event: T, _callback: (this: Plugin, ev: ClientEventsMap[T]) => void);
+    call(data: Plugin, ev: ClientEventsMap[T]): void;
 }
 export { ClientEvent, ClientEventsMap };

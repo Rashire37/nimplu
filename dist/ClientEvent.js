@@ -5,8 +5,8 @@ class ClientEvent {
         this.event = event;
         this._callback = _callback;
     }
-    call(data, ev, owner) {
-        this._callback.bind(data)(ev, owner);
+    call(data, ev) {
+        this._callback.bind(data)(ev);
     }
 }
 export { ClientEvent };
